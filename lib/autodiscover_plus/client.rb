@@ -3,9 +3,9 @@ module AutodiscoverPlus
 
     attr_reader :domain, :email, :http
 
-    def initialize(email:, password:)
+    def initialize(email:, password:, domain: nil)
       @email = email
-      @domain = @email.split("@").last
+      @domain = domain || @email.split("@").last
       @http = HTTPClient.new
       @http.set_auth(nil, @email, password)
     end
